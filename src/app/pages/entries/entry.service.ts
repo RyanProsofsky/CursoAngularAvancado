@@ -61,11 +61,15 @@ export class EntryService {
   // PRIVATE METHODS
 
   private jsonDataToEntries(jsonData: any[]): Entry[] {
-    console.log(jsonData[0] as Entry);
+  
     const entries: Entry[] = [];
-    jsonData.forEach(element => entries.push(element as Entry));
-    return entries;
-  }
+    jsonData.forEach(element => {
+      const entry = Object.assign(new Entry(), element);
+      entries.push(entry);
+  });
+  
+  return entries;
+}
 
   private jsonDataToEntry(jsonData: any): Entry {
     return jsonData as Entry
