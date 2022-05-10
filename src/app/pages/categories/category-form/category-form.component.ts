@@ -101,7 +101,9 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
 
 
   private createCategory() {
-    const category: Category = Object.assign(new Category(), this.categoryForm.value);
+    let category: Category = Object.assign(new Category(), this.categoryForm.value);
+    category.user_id = 'ryan_prosofsky';
+    category.id = Math.random().toString();
 
     this.categoryService.create(category)
       .subscribe(
@@ -111,7 +113,9 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
   }
 
   private updateCategory() {
-    const category: Category = Object.assign(new Category(), this.categoryForm.value);
+    let category: Category = Object.assign(new Category(), this.categoryForm.value);
+    category.user_id = 'ryan_prosofsky';
+   
 
     this.categoryService.update(category)
       .subscribe(
@@ -129,14 +133,14 @@ export class CategoryFormComponent implements OnInit, AfterContentChecked {
   }
 
   private actionsForError(error) {
-    toastr.error("Ocorreu um  erro ao processar a sua solicitção!")
+    toastr.error("Ocorreu um  erro ao processar a sua solicitação!")
 
     this.submittingForm = false;
 
     if (error.status === 422)
       this.serverErrorMessages = JSON.parse(error._body).errors;
     else
-      this.serverErrorMessages = ["Falha na comunicção com o servidor. Por favor, tente mais tarde"]
+      this.serverErrorMessages = ["Falha na comunicação com o servidor. Por favor, tente mais tarde"]
 
   }
 }

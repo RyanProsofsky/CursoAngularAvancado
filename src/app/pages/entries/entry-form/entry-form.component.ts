@@ -53,8 +53,6 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
   }  
 
 
-
-
   constructor(
     private entryService: EntryService,
     private route: ActivatedRoute,
@@ -155,7 +153,10 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
 
 
   private createEntry() {
-    const entry: Entry = Object.assign(new Entry(), this.entryForm.value);
+    let entry: Entry = Object.assign(new Entry(), this.entryForm.value);
+    entry.user_id = 'ryan_prosofsky';
+    entry.id = Math.random().toString();
+
 
     this.entryService.create(entry)
       .subscribe(
@@ -165,7 +166,8 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
   }
 
   private updateEntry() {
-    const entry: Entry = Object.assign(new Entry(), this.entryForm.value);
+    const entry: Entry = Object.assign(new Category(),this.entryForm.value);
+    entry.user_id = 'ryan_prosofsky';
 
     this.entryService.update(entry)
       .subscribe(
@@ -183,14 +185,14 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
   }
 
   private actionsForError(error) {
-    toastr.error("Ocorreu um  erro ao processar a sua solicitção!")
+    toastr.error("Ocorreu um  erro ao processar a sua solicitação!")
 
     this.submittingForm = false;
 
     if (error.status === 422)
       this.serverErrorMessages = JSON.parse(error._body).errors;
     else
-      this.serverErrorMessages = ["Falha na comunicção com o servidor. Por favor, tente mais tarde"]
+      this.serverErrorMessages = ["Falha na comunicação com o servidor. Por favor, tente mais tarde"]
 
   }
 }
