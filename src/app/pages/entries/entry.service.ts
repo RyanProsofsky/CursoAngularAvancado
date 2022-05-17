@@ -51,12 +51,19 @@ export class EntryService {
 
   update(entry: Entry): Observable<Entry> {
     const url = `${this.apiPath}`;
+    return this.categoryService.getById(entry.categoryId).pipe(
+      flatMap(category => {
+        entry.category = category;
 
-    return this.http.put(url, entry).pipe(
-      catchError(this.handleError),
-      map(() => entry)
+        return this.http.put(url, entry).pipe(
+          catchError(this.handleError),
+          map(() => entry)
+        )
+      }
+      )
     )
-  } 
+  }
+
 
 
 
