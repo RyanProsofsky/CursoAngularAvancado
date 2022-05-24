@@ -153,10 +153,9 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
 
 
   private createEntry() {
-    let entry: Entry = Object.assign(new Entry(), this.entryForm.value);
+    const entry: Entry = Entry.fromJson(this.entryForm.value);
     entry.user_id = 'ryan_prosofsky';
     entry.id = Math.random().toString();
-
 
     this.entryService.create(entry)
       .subscribe(
@@ -166,7 +165,7 @@ export class EntryFormComponent implements OnInit, AfterContentChecked {
   }
 
   private updateEntry() {
-    const entry: Entry = Object.assign(new Category(),this.entryForm.value);
+    const entry: Entry = Entry.fromJson(this.entryForm.value);
     entry.user_id = 'ryan_prosofsky';
 
     this.entryService.update(entry)
