@@ -12,6 +12,7 @@ import toastr from "toastr";
 
 export abstract class BaseResourceFormComponent<T extends BaseResourceModel> implements OnInit, AfterContentChecked {
 
+
     currentAction: string | undefined;
     resourceForm!: FormGroup;
     pageTitle: String | undefined;
@@ -20,10 +21,10 @@ export abstract class BaseResourceFormComponent<T extends BaseResourceModel> imp
 
     private route: ActivatedRoute;
     private router: Router;
-    private formBuilder: FormBuilder;
+    protected formBuilder: FormBuilder;
 
     constructor(
-        private injector: Injector,
+         protected injector: Injector,
         public resource: T,
         protected resourceService: BaseResourceService<T>,
         protected jsonDataToResourceFn: (jsonData) => T
