@@ -16,7 +16,8 @@ import { ServerErrorMessagesComponent } from './components/server-error-messages
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ],
   exports:[
     CommonModule,
@@ -24,7 +25,10 @@ import { ServerErrorMessagesComponent } from './components/server-error-messages
     RouterModule,
 
     //shared components
-    BreadCrumbComponent
+    BreadCrumbComponent,
+    PageHeaderComponent,
+    FormFieldErrorComponent,
+    ServerErrorMessagesComponent
   ]
 })
 export class SharedModule { }
